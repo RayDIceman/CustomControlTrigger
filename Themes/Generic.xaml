@@ -1,0 +1,88 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:TestCustomControl.Controls">
+
+
+    <Style TargetType="{x:Type local:CustomControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:CustomControl}">
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="local:CustomControl.IsChecked" Value="False">
+                            <Trigger.Setters>
+                                <Setter Property="local:CustomControl.ArrowData" Value="M0,0L32,0 16,19.745z" />
+                                <Setter Property="local:CustomControl.Text" Value="Open" />
+                                <!--"{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=OpeningText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                            </Trigger.Setters>
+                        </Trigger>
+                        <Trigger Property="local:CustomControl.IsChecked" Value="True">
+                            <Trigger.Setters>
+                                <Setter Property="local:CustomControl.ArrowData" Value="M16,0L32,19.745 0,19.745z" />
+                                <Setter Property="local:CustomControl.Text" Value="Close" />
+                                <!--"{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=ClosingText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                            </Trigger.Setters>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                    <Grid>
+                        <ToggleButton
+                            x:Name="toggle"
+                            Command="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=Command}"
+                            IsChecked="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            <ToggleButton.Content>
+                                <Grid>
+                                    <Grid.RowDefinitions />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Viewbox
+                                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                        Grid.Row="0"
+                                        Grid.Column="0">
+                                        <Grid>
+                                            <Grid
+                                                Name="backgroundGrid1"
+                                                Width="48"
+                                                Height="48"
+                                                Visibility="Visible">
+                                                <Rectangle
+                                                    Name="Rect"
+                                                    Fill="{x:Null}"
+                                                    Visibility="Visible" />
+                                            </Grid>
+                                            <Path
+                                                Width="26"
+                                                Height="26"
+                                                Margin="0,0,0,0"
+                                                Data="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=ArrowData, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                Fill="#FF000000"
+                                                RenderTransformOrigin="0.5,0.5"
+                                                Stretch="Uniform">
+                                                <Path.RenderTransform>
+                                                    <TransformGroup>
+                                                        <TransformGroup.Children>
+                                                            <RotateTransform Angle="0" />
+                                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                                        </TransformGroup.Children>
+                                                    </TransformGroup>
+                                                </Path.RenderTransform>
+                                            </Path>
+                                        </Grid>
+                                    </Viewbox>
+                                    <TextBlock
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Margin="5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </Grid>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

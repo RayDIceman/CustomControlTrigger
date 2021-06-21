@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TestCustomControl
+namespace CustomControlTrigger
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
@@ -22,7 +22,7 @@ namespace TestCustomControl
     {
         public MainWindow()
         {
-            @InitializeComponent();
+            InitializeComponent();
         }
     }
 }
