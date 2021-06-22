@@ -78,10 +78,10 @@
                                         VerticalAlignment="Center">
                                         <FrameworkElement.Style>
                                             <Style TargetType="TextBlock">
-                                                <Setter Property="Text" Value="Open" />
+                                                <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=OpeningText}" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=IsChecked}" Value="True">
-                                                        <Setter Property="Text" Value="Close" />
+                                                        <Setter Property="Text" Value="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=ClosingText}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
