@@ -13,14 +13,14 @@
                             <Trigger.Setters>
                                 <Setter Property="local:CustomControl.ArrowData" Value="M0,0L32,0 16,19.745z" />
                                 <Setter Property="local:CustomControl.Text" Value="Open" />
-                                <!--"{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=OpeningText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                                <!--  "{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=OpeningText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />  -->
                             </Trigger.Setters>
                         </Trigger>
                         <Trigger Property="local:CustomControl.IsChecked" Value="True">
                             <Trigger.Setters>
                                 <Setter Property="local:CustomControl.ArrowData" Value="M16,0L32,19.745 0,19.745z" />
                                 <Setter Property="local:CustomControl.Text" Value="Close" />
-                                <!--"{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=ClosingText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                                <!--  "{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=ClosingText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />  -->
                             </Trigger.Setters>
                         </Trigger>
                     </ControlTemplate.Triggers>
@@ -75,8 +75,18 @@
                                         Grid.Column="1"
                                         Margin="5"
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Text="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                        VerticalAlignment="Center">
+                                        <FrameworkElement.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="Open" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType=local:CustomControl}, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Text" Value="Close" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </FrameworkElement.Style>
+                                    </TextBlock>
                                 </Grid>
                             </ToggleButton.Content>
                         </ToggleButton>
